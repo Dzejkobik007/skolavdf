@@ -8,7 +8,7 @@ else:
 print("[main] You are running on {}".format(sys.platform))
 def checkconnection():
     if winrunning:
-        if os.system("ping -c 2 1.1.1.1 2>&1"):
+        if os.system("ping 1.1.1.1 >nul 2>&1"):
             print("[main] Network problems, exiting...")
             quit(1)
     else:
