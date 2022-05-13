@@ -1,0 +1,129 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+.nav {
+    padding: 1%;
+    line-height: 150%;
+    width: 98%;
+    height: 30px;
+    display: block;
+    background-color: grey;
+}
+
+.nav *{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+header {
+    width: 99%;
+    height: 400px;
+    overflow:unset;
+    text-align: center;
+    display: block;
+    padding-top: 15%;
+    background-color: lightblue;
+    color: white;
+    font-family: 'Bangers', cursive;
+    font-size: 1000%;
+    background-image: url("https://media3.giphy.com/media/vjZkgd6XlhPHSZgQNY/200.gif");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+h1 {
+    text-align: center;
+}
+
+ul {
+    list-style-type: none;
+}
+
+li {
+    display: inline;
+}
+
+li a {
+    text-decoration: none;
+    color:white;
+    padding-right: 5px;
+}
+.carddiv {
+    width: 100%;
+    padding:5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card {
+    width: 250px;
+    height: 300px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.card {
+    width: 250px;
+    height: 300px;
+    display: block;
+}
+
+@media screen and (max-width: 768px) {
+    header {
+        font-size: 500%;
+        padding-top: 30%;
+        height: 400px;
+    }
+    .nav {
+        padding-top: 5px;
+        text-align: center;
+    }
+}
