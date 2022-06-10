@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+    body {
+        background-color: black;
+    }
+
+    .solar-body {
+        /* Center vertically and horizontally */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        border-radius: 50%;
+    }
+
+    .sun {
+        width: 24px;
+        height: 24px;
+        background-color: orange;
+        margin: -12px 0 0 -12px;
+        box-shadow: 0px 0px 5px orange, 0px 0px 5px orange;
+    }
+
+    .merkury {
+        width: 10px;
+        height: 10px;
+        background-color: #5f4d03;
+        margin: -5px 0 0 -5px;
+        animation: 4s merkury infinite linear;
+    }
+
+    @keyframes merkury {
+        0% {
+            transform: rotate(0deg) translate(30px);
+        }
+
+        100% {
+            transform: rotate(360deg) translate(30px);
+        }
+    }
+
+    .venus {
+        width: 14px;
+        height: 14px;
+        background-color: violet;
+        margin: -7px 0 0 -7px;
+        animation: 6s venus infinite linear;
+    }
+
+    @keyframes venus {
+        0% {
+            transform: rotate(0deg) translate(50px);
+        }
+
+        100% {
+            transform: rotate(360deg) translate(50px);
+        }
+    }
+
+    .earth {
+        width: 14px;
+        height: 14px;
+        background-color: blue;
+        margin: -7px 0 0 -7px;
+        animation: 10s earth infinite linear;
+    }
+
+    @keyframes earth {
+        0% {
+            transform: rotate(0deg) translate(90px);
+        }
+
+        100% {
+            transform: rotate(360deg) translate(90px);
+        }
+    }
+
+    .moon {
+        width: 10px;
+        height: 10px;
+        background-color: grey;
+        margin: -5px 0 0 -5px;
+        animation: 10s moon infinite linear;
+    }
+
+    @keyframes moon {
+        0% {
+            transform: rotate(0deg) translate(20px);
+        }
+
+        100% {
+            transform: rotate(360deg) translate(20px);
+        }
+    }
+
+    .mars {
+        width: 20px;
+        height: 20px;
+        background-color: orange;
+        margin: -10px 0 0 -10px;
+        animation: 12s mars infinite linear;
+    }
+
+    @keyframes mars {
+        0% {
+            transform: rotate(0deg) translate(140px);
+        }
+
+        100% {
+            transform: rotate(360deg) translate(140px);
+        }
+    }
+
+    .jupiter {
+        width: 30px;
+        height: 30px;
+        background-color: rgb(230, 190, 116);
+        margin: -15px 0 0 -15px;
+        animation: 15s jupiter infinite linear;
+    }
+
+    @keyframes jupiter {
+        0% {
+            transform: rotate(0deg) translate(180px);
+        }
+
+        100% {
+            transform: rotate(360deg) translate(180px);
+        }
+    }
+
+    .saturn {
+        width: 24px;
+        height: 24px;
+        background-color: rgb(245, 209, 143);
+        margin: -12px 0 0 -12px;
+        animation: 17s saturn infinite linear;
+    }
+
+    @keyframes saturn {
+        0% {
+            transform: rotate(0deg) translate(210px);
+        }
+
+        100% {
+            transform: rotate(360deg) translate(210px);
+        }
+    }
+
+    .uranus {
+        width: 24px;
+        height: 24px;
+        background-color: rgb(17, 0, 255);
+        margin: -12px 0 0 -12px;
+        animation: 18s uranus infinite linear;
+    }
+
+    @keyframes uranus {
+        0% {
+            transform: rotate(0deg) translate(240px);
+        }
+
+        100% {
+            transform: rotate(360deg) translate(240px);
+        }
+    }
+
+    .neptune {
+        width: 20px;
+        height: 20px;
+        background-color: rgb(0, 255, 255);
+        margin: -10px 0 0 -10px;
+        animation: 20s neptune infinite linear;
+    }
+
+    @keyframes neptune {
+        0% {
+            transform: rotate(0deg) translate(270px);
+        }
+
+        100% {
+            transform: rotate(360deg) translate(270px);
+        }
+    }
+
+    .solar-outline {
+        /* Center vertically and horizontally */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        border-radius: 50%;
+        border: 0.5px white dashed;
+        display: none;
+    }
+
+    .link {
+        color: white;
+    }
+
+
+    .merkury-link:hover~.solar-body #merkury-outline {
+        display: block;
+    }
+    .venus-link:hover~.solar-body #venus-outline {
+        display: block;
+    }
+    .earth-link:hover~.solar-body #earth-outline {
+        display: block;
+    }
+    .moon-link:hover~.solar-body #moon-outline {
+        display: block;
+    }
+    .mars-link:hover~.solar-body #mars-outline {
+        display: block;
+    }
+    .jupiter-link:hover~.solar-body #jupiter-outline {
+        display: block;
+    }
+    .saturn-link:hover~.solar-body #saturn-outline {
+        display: block;
+    }
+    .uranus-link:hover~.solar-body #uranus-outline {
+        display: block;
+    }
+    .neptune-link:hover~.solar-body #neptune-outline {
+        display: block;
+    }
+</style>
+
+<body>
+    <a class="link merkury-link">Merkury</a><br>
+    <a class="link venus-link">Venus</a><br>
+    <a class="link earth-link">Earth</a><br>
+    <a class="link moon-link">Moon</a><br>
+    <a class="link mars-link">Mars</a><br>
+    <a class="link jupiter-link">Jupiter</a><br>
+    <a class="link saturn-link">Saturn</a><br>
+    <a class="link uranus-link">Uranus</a><br>
+    <a class="link neptune-link">Neptune</a>
+    <div class="solar-body sun">
+        <div class="solar-outline" id="merkury-outline" style="width: 60px; height: 60px; margin: -30px 0 0 -30px;"></div>
+        <div class="solar-body merkury" id="merkury"></div>
+        <div class="solar-outline" id="venus-outline" style="width: 100px; height: 100px; margin: -50px 0 0 -50px;"></div>
+        <div class="solar-body venus" id="venus"></div>
+        <div class="solar-outline" id="earth-outline" style="width: 180px; height: 180px; margin: -90px 0 0 -90px;"></div>
+        <div class="solar-body earth" id="earth">
+            <div class="solar-outline" id="moon-outline" style="width: 40px; height: 40px; margin: -21px 0 0 -21px;"></div>
+            <div class="solar-body moon" id="moon"></div>
+        </div>
+        <div class="solar-outline" id="mars-outline" style="width: 280px; height: 280px; margin: -140px 0 0 -140px;"></div>
+        <div class="solar-body mars" id="mars"></div>
+        <div class="solar-outline" id="jupiter-outline" style="width: 360px; height: 360px; margin: -180px 0 0 -180px;"></div>
+        <div class="solar-body jupiter" id="jupiter"></div>
+        <div class="solar-outline" id="saturn-outline" style="width: 420px; height: 420px; margin: -210px 0 0 -210px;"></div>
+        <div class="solar-body saturn" id="saturn"></div>
+        <div class="solar-outline" id="uranus-outline" style="width: 480px; height: 480px; margin: -240px 0 0 -240px;"></div>
+        <div class="solar-body uranus" id="uranus"></div>
+        <div class="solar-outline" id="neptune-outline" style="width: 540px; height: 540px; margin: -270px 0 0 -270px;"></div>
+        <div class="solar-body neptune" id="neptune"></div>
+    </div>
+</body>
+
+</html>
