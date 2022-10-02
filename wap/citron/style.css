@@ -1,0 +1,44 @@
+* {
+    padding: 0;
+}
+html {
+    background-image: url("citron.jpg");
+    background-repeat: repeat-y;
+    background-size: cover;
+}
+
+body {
+    background-color:rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    padding: 20px;
+    padding-top: 1px;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 3px solid #ddd;
+    border-left: 0;
+    border-right: 0;
+}
+ul {
+    margin-left: 20px;
+}
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+.helper {
+    display: none;
+}  
+
+@media (max-width : 600px) {
+    body {
+        text-align: center;
+    }
+    .helper {
+        display: block;
+        color: red;
+    }
+}
