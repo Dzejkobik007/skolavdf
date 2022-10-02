@@ -32,10 +32,31 @@ th, td {
 .helper {
     display: none;
 }  
+.avatar {
+    vertical-align: middle;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.cave {
+    margin-top: 5px;
+    display: flex;
+}
+
+.cave .image {
+    width: 160px;
+}
+.cave .info {
+    margin-left: 1;
+}
 
 @media (max-width : 600px) {
     body {
         text-align: center;
+    }
+    .cave .image {
+        display: none;
     }
     .helper {
         display: block;
