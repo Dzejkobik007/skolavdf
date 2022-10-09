@@ -1,5 +1,31 @@
 # Movies - xml
 
+Struktura souboru xml pro import/export z/do database movies
+
+## Popis
+
+### movies
+- movie
+    - id
+    - name
+    - year
+    - country_id
+
+### countries
+- country
+    - id
+    - name
+
+### movies_has_genres
+- movie_has_genre
+    - movie_id
+    - genre_id
+
+### genres
+- genre
+    - id
+    - name
+
 ## Rozbor
 
 ```mermaid

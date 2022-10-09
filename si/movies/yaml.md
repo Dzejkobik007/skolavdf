@@ -1,5 +1,25 @@
 # Movies - yaml
 
+## Popis
+
+### movie
+- id
+- name
+- year
+- country_id
+
+### country
+- id
+- name
+
+### movie_has_genre
+- movie_id
+- genre_id
+
+### genre
+- id
+- name
+
 ## Rozbor
 
 ```mermaid
