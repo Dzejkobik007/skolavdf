@@ -1,30 +1,30 @@
 # Movies - xml
 
-Struktura souboru xml pro import/export z/do database movies
-
 ## Popis
 
-### movies
-- movie
-    - id
-    - name
-    - year
-    - country_id
+Struktura souboru xml pro import/export z/do database movies
 
-### countries
-- country
-    - id
-    - name
+- movies
+    - movie
+        - id
+        - name
+        - year
+        - country_id
 
-### movies_has_genres
-- movie_has_genre
-    - movie_id
-    - genre_id
+- countries
+    - country
+        - id
+        - name
 
-### genres
-- genre
-    - id
-    - name
+- movies_has_genres
+    - movie_has_genre
+        - movie_id
+        - genre_id
+
+- genres
+    - genre
+        - id
+        - name
 
 ## Rozbor
 

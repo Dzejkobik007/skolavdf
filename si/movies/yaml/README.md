@@ -4,23 +4,23 @@
 
 Struktura souboru yaml pro import/export z/do database movies
 
-### movie
-- id
-- name
-- year
-- country_id
+- movie
+    - id
+    - name
+    - year
+    - country_id
 
-### country
-- id
-- name
+- country
+    - id
+    - name
 
-### movie_has_genre
-- movie_id
-- genre_id
+- movie_has_genre
+    - movie_id
+    - genre_id
 
-### genre
-- id
-- name
+- genre
+    - id
+    - name
 
 ## Rozbor
 
