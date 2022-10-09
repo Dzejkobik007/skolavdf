@@ -5,26 +5,26 @@
 Struktura souboru xml pro import/export z/do database movies
 
 ### movies
-    - movie
-        - id
-        - name
-        - year
-        - country_id
+- movie
+    - id
+    - name
+    - year
+    - country_id
 
 ### countries
-    - country
-        - id
-        - name
+- country
+    - id
+    - name
 
 ### movies_has_genres
-    - movie_has_genre
-        - movie_id
-        - genre_id
+- movie_has_genre
+    - movie_id
+    - genre_id
 
 ### genres
-    - genre
-        - id
-        - name
+- genre
+    - id
+    - name
 
 ## Rozbor
 

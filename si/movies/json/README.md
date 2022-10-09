@@ -5,22 +5,22 @@
 Struktura souboru json pro import/export z/do database movies
 
 ### movie
-    - id
-    - name
-    - year
-    - country_id
+ - id
+ - name
+ - year
+ - country_id
 
 ### country
-    - id
-    - name
+ - id
+ - name
 
 ### movie_has_genre
-    - movie_id
-    - genre_id
+ - movie_id
+ - genre_id
 
 ### genre
-    - id
-    - name
+ - id
+ - name
 
 ## Rozbor
 
