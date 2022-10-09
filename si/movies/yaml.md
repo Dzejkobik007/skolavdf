@@ -2,6 +2,8 @@
 
 ## Popis
 
+Struktura souboru yaml pro import/export z/do database movies
+
 ### movie
 - id
 - name
