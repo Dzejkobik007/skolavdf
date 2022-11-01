@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raycast Test</title>
+</head>
+<style>
+    html,
+    body {
+        margin: 0;
+        height: 100%;
+        background-color: #181a1b;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: row;
+        height: 100%;
+    }
+
+    /* CSS */
+    .button-30 {
+        align-items: center;
+        appearance: none;
+        background-color: #191c1d;
+        border-radius: 4px;
+        border-width: 0;
+        box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+        box-sizing: border-box;
+        color: #a9b7cb;
+        cursor: pointer;
+        display: inline-flex;
+        font-family: "JetBrains Mono", monospace;
+        height: 48px;
+        width: 200px;
+        justify-content: center;
+        line-height: 1;
+        list-style: none;
+        overflow: hidden;
+        padding-left: 16px;
+        padding-right: 16px;
+        position: relative;
+        text-align: left;
+        text-decoration: none;
+        transition: box-shadow .15s, transform .15s;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        white-space: nowrap;
+        will-change: box-shadow, transform;
+        font-size: 18px;
+    }
+
+    .button-30:focus {
+        box-shadow: #a9b7cb 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #a9b7cb 0 -3px 0 inset;
+    }
+
+    .button-30:hover {
+        box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #a9b7cb 0 -3px 0 inset;
+        transform: translateY(-2px);
+    }
+
+    .button-30:active {
+        box-shadow: #a9b7cb 0 3px 7px inset;
+        transform: translateY(2px);
+    }
+
+    .controls {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        width: 300px;
+    }
+
+    .controls>*:first-child {
+        margin-bottom: 10px;
+    }
+
+    .field {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    table {
+        height: 500px;
+        border-spacing: 0;
+        border-collapse: collapse;
+        margin: 0;
+        top: 50%;
+        transform: scale(0.5);
+        border-right: none;
+        border-bottom: none;
+    }
+
+    table tbody * {
+        padding: 0;
+        /* border: 1px #3e50b4; */
+        border-style: dashed;
+        height: 50px;
+    }
+
+    .notopborder {
+        border-top: none;
+    }
+
+    .nobottomborder {
+        border-bottom: none;
+    }
+
+    .noleftborder {
+        border-left: none;
+    }
+
+    .norightborder {
+        border-right: none;
+    }
+
+    .wall-notopborder {
+        border-top: solid;
+        border-top-color: #4f4f4f;
+    }
+
+    .wall-nobottomborder {
+        border-bottom: solid;
+        border-bottom-color: #4f4f4f;
+    }
+
+    .wall-noleftborder {
+        border-left: solid;
+        border-left-color: #4f4f4f;
+    }
+
+    .wall-norightborder {
+        border-right: solid;
+        border-right-color: #4f4f4f;
+    }
+
+
+
+    table tbody tr td {
+        padding: 0;
+        margin: 0;
+        width: 50px;
+        text-align: center;
+        text-anchor: middle;
+    }
+
+    table tbody tr {
+        margin: 0;
+        padding: 0;
+        height: 50px;
+        text-align: center;
+        text-anchor: middle;
+    }
+
+    .wall {
+        background-color: #4f4f4f;
+    }
+
+    .observer {
+        height: 48px;
+        width: 48px;
+        background-color: red;
+        border: none;
+        transform: scale(0.5);
+        border-radius: 50%;
+    }
+
+    .observer-exposed {
+        height: 48px;
+        width: 48px;
+        background-color: green;
+        border: none;
+        transform: scale(0.5);
+        border-radius: 50%;
+    }
+
+    .line {
+        height: 48px;
+        width: 48px;
+        background-color: yellow;
+        border: none;
+        transform: scale(0.3);
+        border-radius: 50%;
+    }
+
+    @media only screen and (min-height: 800px) {
+        table {
+            transform: scale(1);
+        }
+    }
+</style>
+
+<body>
+    <div class="container">
+
+        <div class="field">
+            <table>
+                <tbody class="grid">
+                </tbody>
+            </table>
+        </div>
+        <div class="controls">
+            <div class="button-30" onclick="generateMap()" role="button">Generuj Mapu</div>
+            <div class="button-30" onclick="placeObservers(10,10)" role="button">Generuj Objekty</div>
+        </div>
+    </div>
+</body>
+<script>
+    function placeGrid(height, width) {
+        grid = document.getElementsByClassName("grid")[0];
+        grid.innerHTML = "";
+        for (row = 0; row < height; row++) {
+            tr = document.createElement("tr");
+            for (col = 0; col < width; col++) {
+                td = document.createElement("td");
+                td.id = (row * width) + col;
+                td.onclick = function () { this.classList.contains("wall") ? this.classList.remove("wall") : this.classList.add("wall") }
+                // td.innerHTML = (row*width)+col;
+                if (col == 0) {
+                    td.classList.add("noleftborder");
+                }
+                if (row == 0) {
+                    td.classList.add("notopborder");
+                }
+                if (col < width + 1) {
+                    td.classList.add("norightborder");
+                }
+                if (row < height + 1) {
+                    td.classList.add("nobottomborder");
+                }
+                tr.appendChild(td);
+            }
+            grid.appendChild(tr);
+        }
+    }
+
+    function placeWalls(height, width, num) {
+        grid = document.getElementsByClassName("grid")[0];
+        for (wall = 1; wall <= num; wall++) {
+            x = Math.floor(Math.random() * width);
+            x = x ? x : x + 1;
+            y = Math.floor(Math.random() * height);
+            y = y ? y : y + 1;
+            console.log("{" + x + "," + y + "}");
+            td = xyConvert(x, y);
+            if (td.childNodes.length == 0) {
+                div = document.createElement("div");
+                div.classList.add("wall");
+                td.appendChild(div);
+            } else {
+                wall--;
+            }
+        }
+    }
+
+    function removeElementsByClass(className){
+        const elements = document.getElementsByClassName(className);
+        while(elements.length > 0){
+            elements[0].parentNode.removeChild(elements[0]);
+        }
+    }
+
+
+    function placeObservers(height, width) {
+        grid = document.getElementsByClassName("grid")[0];
+        //cleanup
+        // if (document.getElementsByClassName("observer").length > 0) {
+        //     el = document.getElementsByClassName("observer");
+        //     for (p = 0; p < el.length; p++){
+        //         el[p].outerHTML = "";
+        //     }
+        // }
+        // if (document.getElementsByClassName("observer-exposed").length > 0) {
+        //     el = document.getElementsByClassName("observer-exposed");
+        //     for (p = 0; p < el.length; p++){
+        //         el[p].outerHTML = "";
+        //     }
+        // }
+        // if (document.getElementsByClassName("line").length > 0) {
+        //     el = document.getElementsByClassName("line");
+        //     len = el.length;
+        //     for (p = 0; p < len; p++){
+        //         el[p].outerHTML = "";
+        //         console.log(p);
+        //     }
+        // }
+
+        removeElementsByClass("observer");
+        removeElementsByClass("observer-exposed");
+        removeElementsByClass("line")
+
+        obs = [];
+        obs[0] = [];
+        obs[1] = [];
+        for (i = 0; i < 2; i++) {
+            x = Math.floor(Math.random() * width);
+            x = x ? x : x + 1;
+            y = Math.floor(Math.random() * height);
+            y = y ? y : y + 1;
+            console.log("{" + x + "," + y + "}");
+            obs[i] = [x, y];
+            td = xyConvert(y, x);
+            if (td.childNodes.length == 0) {
+                div = document.createElement("div");
+                div.classList.add("observer");
+                td.appendChild(div);
+            } else {
+                i--;
+            }
+        }
+        if (!raycast(obs[0][1], obs[0][0], obs[1][1], obs[1][0])) {
+            xyConvert(obs[0][1], obs[0][0]).childNodes[0].classList.remove("observer");
+            xyConvert(obs[0][1], obs[0][0]).childNodes[0].classList.add("observer-exposed");
+            xyConvert(obs[1][1], obs[1][0]).childNodes[0].classList.remove("observer");
+            xyConvert(obs[1][1], obs[1][0]).childNodes[0].classList.add("observer-exposed");
+        }
+    }
+
+    function xyConvert(x, y) {
+        // console.log("s{" + x + "," + y + "}");
+        return document.getElementsByClassName("grid")[0].childNodes[y].childNodes[x];
+    }
+
+    function lookAround() {
+        grid = document.getElementsByClassName("grid")[0].getElementsByClassName("observer");
+
+
+    }
+
+    function raycast(x0, y0, x1, y1) {
+        grid = document.getElementsByClassName("grid")[0];
+        var hit = false;
+        var dx = Math.abs(x1 - x0);
+        var dy = Math.abs(y1 - y0);
+        var sx = (x0 < x1) ? 1 : -1;
+        var sy = (y0 < y1) ? 1 : -1;
+        var err = dx - dy;
+
+        while (true) {
+            td = xyConvert(x0, y0);
+            if (td.childNodes.length == 0) {
+                div = document.createElement("div");
+                div.classList.add("line");
+                td.appendChild(div);
+            }
+            if (td.childNodes.length > 0 && td.childNodes[0].classList.contains("wall")) {
+                hit = true;
+            }
+
+            // Do what you need to for this
+
+            if ((x0 === x1) && (y0 === y1)) break;
+            var e2 = 2 * err;
+            if (e2 > -dy) { err -= dy; x0 += sx; }
+            if (e2 < dx) { err += dx; y0 += sy; }
+        }
+        return hit;
+    }
+
+    function correctWallConnections(height, width) {
+        trarr = document.getElementsByClassName("grid")[0].getElementsByTagName("tr");
+        for (trindex = 0; trindex < trarr.length; trindex++) {
+            tdarr = trarr[trindex].getElementsByTagName("td");
+            for (tdindex = 0; tdindex < tdarr.length; tdindex++) {
+                td = xyConvert(tdindex, trindex);
+                if (td.childNodes.length > 0 && td.childNodes[0].classList.contains("wall")) {
+                    tdup = (trindex - 1 < 0) ? false : xyConvert(tdindex, trindex - 1);
+                    // console.log("tdup")
+                    // console.log(tdup);
+                    tddown = (trindex + 2 > height) ? false : xyConvert(tdindex, trindex + 1);
+                    // console.log("tddown")
+                    // console.log(tddown);
+                    tdleft = (tdindex - 1 < 0) ? false : xyConvert(tdindex - 1, trindex);
+                    // console.log("tdleft")
+                    // console.log(tdleft);
+                    tdright = (tdindex + 2 > width) ? false : xyConvert(tdindex + 1, trindex);
+                    // console.log("tdright")
+                    // console.log(tdright);
+
+                    if (tdup != false && tdup.childNodes.length > 0 && tdup.childNodes[0].classList.contains("wall")) {
+                        if (!tdup.childNodes[0].classList.contains("wall-nobottomborder")) {
+                            tdup.classList.add("wall-nobottomborder");
+                            tdup.childNodes[0].classList.add("wall-nobottomborder");
+                        }
+                    }
+                    if (tddown != false && tddown.childNodes.length > 0 && tddown.childNodes[0].classList.contains("wall")) {
+                        if (!tddown.childNodes[0].classList.contains("wall-notopborder")) {
+                            tddown.classList.add("wall-notopborder");
+                            tddown.childNodes[0].classList.add("wall-notopborder");
+                        }
+                    }
+                    if (tdleft != false && tdleft.childNodes.length > 0 && tdleft.childNodes[0].classList.contains("wall")) {
+                        if (!tdleft.childNodes[0].classList.contains("wall-norightborder")) {
+                            tdleft.classList.add("norightborder");
+                            tdleft.childNodes[0].classList.add("wall-norightborder");
+                        }
+                    }
+                    if (tdright != false && tdright.childNodes.length > 0 && tdright.childNodes[0].classList.contains("wall")) {
+                        if (!tdright.childNodes[0].classList.contains("wall-noleftborder")) {
+                            tdright.classList.add("noleftborder");
+                            tdright.childNodes[0].classList.add("wall-noleftborder");
+                        }
+                    }
+                }
+            }
+        }
+
+        // document.getElementsByClassName("grid")[0].getElementsByTagName("tr").forEach(tr => {
+        //     tr.getElementsByTagName("td").forEach(td => {
+
+        //     })
+        // });
+    }
+
+    height = 10;
+    width = 10;
+
+    function generateMap() {
+        placeGrid(height, width);
+        placeWalls(height, width, 20);
+        correctWallConnections(height, width);
+    }
+    placeGrid(height, width);
+</script>
+
+</html>
