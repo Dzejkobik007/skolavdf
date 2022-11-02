@@ -114,10 +114,12 @@
 
     .notopborder {
         border-top: none;
+
     }
 
     .nobottomborder {
         border-bottom: none;
+
     }
 
     .noleftborder {
@@ -168,6 +170,7 @@
 
     .wall {
         background-color: #4f4f4f;
+        transform: scale(1.1);
     }
 
     .observer {
@@ -220,6 +223,7 @@
     </div>
 </body>
 <script>
+var manualplace = false;
     function placeGrid(height, width) {
         grid = document.getElementsByClassName("grid")[0];
         grid.innerHTML = "";
@@ -228,7 +232,18 @@
             for (col = 0; col < width; col++) {
                 td = document.createElement("td");
                 td.id = (row * width) + col;
-                td.onclick = function () { this.classList.contains("wall") ? this.classList.remove("wall") : this.classList.add("wall") }
+                td.onclick = function () {
+                    if (manualplace) {
+                        div = document.createElement("div");
+                        div.classList.add("wall");
+                        this.childNodes.length > 0 ? this.childNodes[0].remove("wall") : this.appendChild(div);
+                        this.parentElement.classList.remove("wall-notopborder");
+                        this.parentElement.classList.remove("wall-nobottomborder");
+                        this.parentElement.classList.remove("wall-noleftborder");
+                        this.parentElement.classList.remove("wall-norightborder");
+                        correctWallConnections(10, 10);
+                    }
+                }
                 // td.innerHTML = (row*width)+col;
                 if (col == 0) {
                     td.classList.add("noleftborder");
@@ -378,6 +393,7 @@
             for (tdindex = 0; tdindex < tdarr.length; tdindex++) {
                 td = xyConvert(tdindex, trindex);
                 if (td.childNodes.length > 0 && td.childNodes[0].classList.contains("wall")) {
+
                     tdup = (trindex - 1 < 0) ? false : xyConvert(tdindex, trindex - 1);
                     // console.log("tdup")
                     // console.log(tdup);
@@ -391,29 +407,46 @@
                     // console.log("tdright")
                     // console.log(tdright);
 
+                    // td.classList.remove("wall-notopborder");
+                    // td.classList.remove("wall-nobottomborder");
+                    // td.classList.remove("wall-noleftborder");
+                    // td.classList.remove("wall-norightborder");
                     if (tdup != false && tdup.childNodes.length > 0 && tdup.childNodes[0].classList.contains("wall")) {
                         if (!tdup.childNodes[0].classList.contains("wall-nobottomborder")) {
                             tdup.classList.add("wall-nobottomborder");
                             tdup.childNodes[0].classList.add("wall-nobottomborder");
                         }
+                    } else {
+                        td.classList.contains("wall-notopborder") ? td.classList.remove("wall-notopborder") : "";
+                        td.childNodes[0].classList.contains("wall-notopborder") ? td.childNodes[0].classList.remove("wall-notopborder") : "";
                     }
+                    
                     if (tddown != false && tddown.childNodes.length > 0 && tddown.childNodes[0].classList.contains("wall")) {
                         if (!tddown.childNodes[0].classList.contains("wall-notopborder")) {
                             tddown.classList.add("wall-notopborder");
                             tddown.childNodes[0].classList.add("wall-notopborder");
                         }
+                    } else {
+                        td.classList.contains("wall-nobottomborder") ? td.classList.remove("wall-nobottomborder") : "";
+                        td.childNodes[0].classList.contains("wall-nobottomborder") ? td.childNodes[0].classList.remove("wall-nobottomborder") : "";
                     }
                     if (tdleft != false && tdleft.childNodes.length > 0 && tdleft.childNodes[0].classList.contains("wall")) {
                         if (!tdleft.childNodes[0].classList.contains("wall-norightborder")) {
-                            tdleft.classList.add("norightborder");
+                            tdleft.classList.add("wall-norightborder");
                             tdleft.childNodes[0].classList.add("wall-norightborder");
                         }
+                    } else {
+                        td.classList.contains("wall-noleftborder") ? td.classList.remove("wall-noleftborder") : "";
+                        td.childNodes[0].classList.contains("wall-noleftborder") ? td.childNodes[0].classList.remove("wall-noleftborder") : "";
                     }
                     if (tdright != false && tdright.childNodes.length > 0 && tdright.childNodes[0].classList.contains("wall")) {
                         if (!tdright.childNodes[0].classList.contains("wall-noleftborder")) {
-                            tdright.classList.add("noleftborder");
+                            tdright.classList.add("wall-noleftborder");
                             tdright.childNodes[0].classList.add("wall-noleftborder");
                         }
+                    } else {
+                        td.classList.contains("wall-norightborder") ? td.classList.remove("wall-norightborder") : "";
+                        td.childNodes[0].classList.contains("wall-norightborder") ? td.childNodes[0].classList.remove("wall-norightborder") : "";
                     }
                 }
             }
