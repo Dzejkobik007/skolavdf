@@ -1,22 +1,10 @@
 version: '3'
 
 services:
-  nginx:
-    build:
-      context: .
-      dockerfile: nginx/Dockerfile
-    restart: always
-    container_name: api-calcc
-    ports:
-    - 80:80
-    networks:
-      - internal
   php:
     build:
       context: .
-      dockerfile: php/Dockerfile
-    networks:
-      - internal
-networks:
-  internal:
-    driver: bridge
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+    - 80:80

@@ -42,16 +42,16 @@ function processData(Array $data) {
 }
 
 function addNumbers(Array $num){
-    $result = 0;
-    for ($i = 0; $i < sizeof($num);$i++) {
+    $result = $num[0];
+    for ($i = 1; $i < sizeof($num);$i++) {
         $result += $num[$i];
     }
     return $result;
 }
 
 function subNumbers(Array $num) {
-    $result = 0;
-    for ($i = 0; $i < sizeof($num);$i++) {
+    $result = $num[0];
+    for ($i = 1; $i < sizeof($num);$i++) {
         $result -= $num[$i];
     }
     return $result;
