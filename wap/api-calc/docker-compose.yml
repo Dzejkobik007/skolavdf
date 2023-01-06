@@ -5,6 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    container_name: api-calc
     restart: always
     ports:
     - 80:80
