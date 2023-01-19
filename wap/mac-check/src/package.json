@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "express": "^4.18.2",
+    "fast-csv": "^4.3.6",
+    "object-to-xml": "^2.0.0",
+    "simple-sha256": "^1.1.0"
+  }
+}

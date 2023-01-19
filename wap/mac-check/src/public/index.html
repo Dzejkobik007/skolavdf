@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/hash.js"></script>
+</head>
+
+<body>
+    <div class="box">
+        <p class="manufacturer">Please write first half of a mac address</p>
+        <input type="text" autocomplete="off" maxlength="17" pattern="[a-fA-F0-9-]+" oninput="macformat(this);"
+            required>
+    </div>
+</body>
+<script>
+    const secret = "1234567";
+
+    function macformat(input) {
+        str = input.value.toUpperCase();
+        allowed = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", ":"];
+        newstr = "";
+        for (var i = 0; i < str.length; i++) {
+            if (allowed.includes(str.charAt(i))) {
+                if ((i + 1) % 3) {
+                    newstr = newstr + str.charAt(i).replace(':', '');
+                } else {
+                    newstr = newstr + ":";
+                    newstr = newstr + str.charAt(i).replace(':', '');
+                }
+            }
+        }
+        input.value = newstr;
+        if (newstr.length < 8) {
+            document.getElementsByClassName("manufacturer")[0].innerHTML = "Please write first half of a mac address";
+        } else if (newstr.length == 8) {
+            updateOrg(input, newstr.replaceAll(':', ''));
+        }
+    }
+
+    function updateOrg(input, macrange) {
+        man = document.getElementsByClassName("manufacturer")[0];
+        man.innerHTML = '<img src="bars-scale-light.svg" alt="">';
+        fetch('/api/range/' + macrange)
+            .then(
+                response => response.json()
+            ).then(jsonResponse => {
+                console.log(jsonResponse);
+
+                    if (jsonResponse.code == 404) {
+                        man.innerHTML = 'Unknown';
+                    } else if (jsonResponse.code == 200) {
+                        
+                        man.innerHTML = jsonResponse.result.organization;
+
+                        // Hash check not working, idk why
+                        // sha256(jsonResponse.result + secret).then(value => {
+                        //     console.log(value);
+                        //     if (value == jsonResponse.hash) {
+                        //         man.innerHTML = jsonResponse.result.organization;
+                        //     }else {
+                        //         man.innerHTML = 'Insecure';
+                        //     }
+                        // })
+                        
+                    } else {
+                        man.innerHTML = 'Error';
+                    }
+            });
+    }
+</script>
+
+</html>
