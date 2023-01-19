@@ -19,7 +19,7 @@ Vratí mac adresu s výrobcem pokud byl nalezen, jinak vratí chybu.
 `:macaddress` >> Aspoň první polovina Mac Adresy
 
 **Query Parameters**
-|| Required | Default Value | Desc |
+|| Required | Default Value | Description |
 |--|--|--|--|
 | `format` | `no` | `json` | Specifikuje jaký formát má být použit při odpovědi. Možnosti jsou: `json`,`xml`,`csv` |
 
