@@ -1,4 +1,4 @@
-# **mac-check**
+# **PHP-datatypes**
 
 ## Úvod
 
