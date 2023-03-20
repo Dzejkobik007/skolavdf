@@ -29,12 +29,18 @@ class MySQL implements IDB
         return [];
     }
 
-    function insert(string $table, array $data): bool {
-        $query = "INSERT INTO `".$table."` VALUES (";
-        for($i = 0; $i < sizeof($data); $i++) {
-            $query .= "'".$data[$i]."', ";
+    function insert(string $table, array $data): bool {      
+        $keys = "(";
+        $values = "(";
+        foreach(array_keys($data) as $key) {
+            $keys .= "'".$key."', ";
         }
-        $query .= ")";
+        foreach($data as $row) {
+            $values .= "'".$row."', ";
+        }
+        $keys .= ")";
+        $values .= ")";
+        $query = "INSERT INTO `".$table."` ".$keys." VALUES ".$values;
         $result = mysqli_query($this->db, $query);
         return $result ? true : false;
     }
