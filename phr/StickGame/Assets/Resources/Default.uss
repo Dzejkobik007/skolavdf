@@ -1,0 +1,81 @@
+VisualElement {}
+
+.unity-label {
+	align-self: center;
+	color: #ffffff;
+	-unity-font-style: bold;
+}
+.unity-button {
+	background-color: #000000;
+	color: #ffffff;
+	width: 200px;
+	-unity-font-style: bold;
+	border-width: 3px;
+	border-color: #ffffff;
+	transition-duration: 0.1s;
+	align-self: center;
+}
+
+.InputText {
+	position: absolute;
+	align-self: center;
+	justify-content: center;
+	height: 100%;
+}
+
+.InfoText {
+	position: absolute;
+	align-self: center;
+	justify-content: center;
+	height: 100%;
+}
+
+SettingsMenu {
+	height: 100%;
+}
+
+.SettingsContainer {
+	align-self: center;
+	justify-content: center;
+	height: 100%;
+	width: 60%;
+}
+
+GameMenu {
+	height: 100%;
+}
+
+.GameMenuContainer {
+	align-self: center;
+	justify-content: center;
+	height: 100%;
+	width: 60%;
+}
+
+MainMenu {
+	align-self: center;
+	justify-content: center;
+	height: 100%;
+	width: 100%;
+}
+
+MainMenu .unity-image {
+	width: 100%;
+}
+
+.unity-image {
+	width: 80%;
+	height: 40%;
+	align-self: center;
+}
+
+.unity-text-field {
+	width: 200px;
+	-unity-font-style: bold;
+	border-width: 3px;
+	align-self: center;
+}
+
+.unity-button:hover {
+	width: 210px
+}

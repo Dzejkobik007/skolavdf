@@ -1,0 +1,4 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/Resources/Default.uss?fileID=7433441132597879392&amp;guid=536c19025cccb09499864fd2904ef37d&amp;type=3#Default" />
+    <MultiplayerDialog />
+</ui:UXML>
