@@ -2,6 +2,8 @@
 
 Stick Game je ~~MultiPlayerová~~ hra o souboji "Stickmanů". (Ne)Máte na výběr z mnoha zbraní.
 
+## Propagace hry:
+![Plakát hry](plakat.png)
 ## Screenshoty ze hry:
 ![Screenshot Unity Editoru](Editor.png)
 ![Screenshot Menu](MainMenu.png)
