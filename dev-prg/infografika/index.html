@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Návod na tisk</title>
+</head>
+<style>
+    * {
+        font-family: 'Raleway', sans-serif;
+    }
+    html,body {
+        margin: 0;
+        padding: 0;
+        background-color: black;
+        color: #ffffff;
+    }
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .step {
+        width: 700px;
+        padding: 5px;
+        border-color: #0385ff;
+        border-style: solid;
+        border-width: 5px;
+        margin: 10px;
+        display: flex;
+        align-items: center;
+        font-size: xx-large;
+    }
+    .view {
+        height: 100%;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        border-color: #0385ff;
+        border-style: solid;
+        border-width: 5px;
+    }
+
+</style>
+<body>
+    <div class="view">
+        <h1>Jak tisknout na 3d tiskárně</h1>
+        <div class="step" id="1">1. Vymodelovat nebo najít 3d model</div>
+        <div class="step" id="2">2. Exportovat nebo stáhnout 3d model</div>
+        <div class="step" id="3">3. Slicovat 3d model a exportovat Gcode</div>
+        <div class="step" id="4">4. Zapnout tiskárnu</div>
+        <div class="step" id="5">5. Zkopírovat Gcode na 3d tiskárnu</div>
+        <div class="step" id="6">6. Spustit tisk</div>
+        <div class="step" id="7">7. Zkontrolovat první vrstvu</div>
+        <div class="step" id="8">8. Počkat až tiskárna dotiskne a vychladne</div>
+        <div class="step" id="9">9. Sundat vytisk</div>
+        <div class="step" id="10">10. Vypnout tiskárnu</div>
+    </div>
+</body>
+</html>
